@@ -15,7 +15,7 @@ cache:
 
 script:
   - mvn clean package -U
-  - docker build -t db8913/upravljanje_dogodkov .
+  - docker build -t db8913/katalog_dogodkov .
 
 after_success:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
