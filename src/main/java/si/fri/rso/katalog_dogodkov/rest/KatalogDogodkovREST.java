@@ -1,4 +1,4 @@
-package si.fri.rso.katalog_dogodkov.microservice;
+package si.fri.rso.katalog_dogodkov.rest;
 
 import si.fri.rso.katalog_dogodkov.bean.DogodekBean;
 import si.fri.rso.katalog_dogodkov.entity.Dogodek;
@@ -14,15 +14,13 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Path("katalog_dogodkov")
-public class KatalogDogodkov {
+public class KatalogDogodkovREST {
 
     @Inject
     private DogodekBean dogodekBean;
 
     @GET
     public Response getAllEvents() {
-        System.out.println("DELA");
-
         List<Dogodek> dogodki = dogodekBean.getEvents();
         
         return Response.ok(dogodki).build();
