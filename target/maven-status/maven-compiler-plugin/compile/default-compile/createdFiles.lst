@@ -1,4 +1,4 @@
 si/fri/rso/katalog_dogodkov/bean/DogodekBean.class
 si/fri/rso/katalog_dogodkov/entity/Dogodek.class
-si/fri/rso/katalog_dogodkov/microservice/KatalogDogodkovApplication.class
-si/fri/rso/katalog_dogodkov/microservice/KatalogDogodkov.class
+si/fri/rso/katalog_dogodkov/rest/KatalogDogodkovREST.class
+si/fri/rso/katalog_dogodkov/rest/KatalogDogodkovApplication.class

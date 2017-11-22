@@ -1,4 +1,13 @@
 kumuluzee:
+  name: katalog_dogodkov-service
+  version: 1.0.0
+  env:
+    name: dev
+  config:
+    start-retry-delay-ms: 500
+    max-retry-delay-ms: 900000
+    etcd:
+      hosts: http://localhost:2379
   datasources:
     - jndi-name: jdbc/KatalogDogodkovDS
       connection-url: jdbc:postgresql://localhost:5432/dogodki
