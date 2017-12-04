@@ -20,6 +20,12 @@ public class KatalogDogodkovREST {
     private DogodekBean dogodekBean;
 
     @GET
+    @Path("/test")
+    public Response test() {
+        return Response.ok("OK").build();
+    }
+
+    @GET
     public Response getAllEvents() {
         List<Dogodek> dogodki = dogodekBean.getEvents();
         
