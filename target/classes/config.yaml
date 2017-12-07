@@ -10,7 +10,7 @@ kumuluzee:
       hosts: http://localhost:2379
   datasources:
     - jndi-name: jdbc/KatalogDogodkovDS
-      connection-url: jdbc:postgresql://localhost:5432/dogodki
-      username: postgres
-      password: postgres
+      connection-url: jdbc:postgresql://ec2-54-243-211-197.compute-1.amazonaws.com:5432/d1h0i1446t0fgl?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
+      username: ${POSTGRES_USERNAME}
+      password: ${POSTGRES_PASSWORD}
       max-pool-size: 20
