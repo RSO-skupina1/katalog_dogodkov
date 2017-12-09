@@ -1,5 +1,8 @@
 package si.fri.rso.katalog_dogodkov.rest;
 
+import com.kumuluz.ee.logs.cdi.Log;
+import com.kumuluz.ee.logs.cdi.LogParams;
+import org.eclipse.microprofile.metrics.annotation.Metric;
 import si.fri.rso.katalog_dogodkov.bean.DogodekBean;
 import si.fri.rso.katalog_dogodkov.entity.Dogodek;
 
@@ -14,9 +17,11 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Path("katalog_dogodkov")
+@Log(LogParams.METRICS)
 public class KatalogDogodkovREST {
 
     @Inject
+    @Metric(name = "dogodekBean")
     private DogodekBean dogodekBean;
 
     @GET

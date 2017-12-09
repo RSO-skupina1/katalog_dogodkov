@@ -17,7 +17,7 @@ kumuluzee:
 
   discovery:
     etcd:
-      hosts: http://localhost:2379
+      hosts: http://etcd:2379
     ttl: 20
     ping-interval: 15
 
@@ -27,3 +27,28 @@ kumuluzee:
       username: ${POSTGRES_USERNAME}
       password: ${POSTGRES_PASSWORD}
       max-pool-size: 20
+
+  health:
+      servlet:
+        mapping: /health
+        enabled: true
+      logs:
+        enabled: true
+        level: INFO
+        period-s: 30
+      checks:
+        data-source-health-check:
+          jndi-name: jdbc/KatalogDogodkovDS
+          username: ${POSTGRES_USERNAME}
+          password: ${POSTGRES_PASSWORD}
+        disk-space-health-check:
+          threshold: 100000000
+        http-health-check:
+          - connection-url: http://localhost:8080/v1/katalog_dogodkov
+
+  metrics:
+      web-instrumentation:
+        - name: metricsEndpoint
+          url-pattern: /metrics/*
+        - name: katalogDogodkovEndpoint
+          url-pattern: /v1/katalog_dogodkov/*
