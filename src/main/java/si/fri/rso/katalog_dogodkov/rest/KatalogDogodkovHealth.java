@@ -3,8 +3,10 @@ package si.fri.rso.katalog_dogodkov.rest;
 import org.eclipse.microprofile.health.Health;
 import org.eclipse.microprofile.health.HealthCheck;
 import org.eclipse.microprofile.health.HealthCheckResponse;
+import si.fri.rso.katalog_dogodkov.configuration.RestProperties;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.logging.Logger;
@@ -17,18 +19,24 @@ public class KatalogDogodkovHealth implements HealthCheck {
 
     private static final Logger LOG = Logger.getLogger(KatalogDogodkovHealth.class.getSimpleName());
 
+    @Inject
+    private RestProperties restProperties;
+
+
     public HealthCheckResponse call() {
 
-        try {
+        if (restProperties.isHealthy()) {
+            try {
 
-            HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
-            connection.setRequestMethod("HEAD");
+                HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+                connection.setRequestMethod("HEAD");
 
-            if (connection.getResponseCode() == 200) {
-                return HealthCheckResponse.named(KatalogDogodkovHealth.class.getSimpleName()).up().withData(url, "UP").build();
+                if (connection.getResponseCode() == 200) {
+                    return HealthCheckResponse.named(KatalogDogodkovHealth.class.getSimpleName()).up().withData(url, "UP").build();
+                }
+            } catch (Exception exception) {
+                LOG.severe(exception.getMessage());
             }
-        }  catch (Exception exception) {
-            LOG.severe(exception.getMessage());
         }
 
         return HealthCheckResponse.named(KatalogDogodkovHealth.class.getSimpleName()).down().withData(url, "DOWN").build();

@@ -1,9 +1,12 @@
 package si.fri.rso.katalog_dogodkov.rest;
 
+import com.kumuluz.ee.logs.LogManager;
+import com.kumuluz.ee.logs.Logger;
 import com.kumuluz.ee.logs.cdi.Log;
-import com.kumuluz.ee.logs.cdi.LogParams;
+import org.eclipse.microprofile.metrics.annotation.Metered;
 import org.eclipse.microprofile.metrics.annotation.Metric;
 import si.fri.rso.katalog_dogodkov.bean.DogodekBean;
+import si.fri.rso.katalog_dogodkov.configuration.RestProperties;
 import si.fri.rso.katalog_dogodkov.entity.Dogodek;
 import si.fri.rso.katalog_dogodkov.entity.Projekt;
 
@@ -18,8 +21,13 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Path("katalog_dogodkov")
-@Log(LogParams.METRICS)
+@Log
 public class KatalogDogodkovREST {
+
+    private static final Logger LOG = LogManager.getLogger(KatalogDogodkovREST.class.getName());
+
+    @Inject
+    private RestProperties restProperties;
 
     @Inject
     @Metric(name = "dogodekBean")
@@ -28,7 +36,7 @@ public class KatalogDogodkovREST {
     @GET
     @Path("/test")
     public Response test() {
-        return Response.ok("OK").build();
+        return Response.ok(restProperties.isHealthy()).build();
     }
 
     @GET
@@ -48,8 +56,14 @@ public class KatalogDogodkovREST {
     }
 
     @GET
+    @Metered
     public Response getAllEvents() {
+
+        LOG.info("getAllEvents() STARTED.");
+
         List<Dogodek> dogodki = dogodekBean.getEvents();
+
+        LOG.info("getAllEvents() ENDED.");
         
         return Response.ok(dogodki).build();
     }

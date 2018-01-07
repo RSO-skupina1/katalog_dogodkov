@@ -2,6 +2,8 @@ si/fri/rso/katalog_dogodkov/bean/DogodekBean.class
 si/fri/rso/katalog_dogodkov/entity/Projekt.class
 si/fri/rso/katalog_dogodkov/rest/KatalogDogodkovREST.class
 si/fri/rso/katalog_dogodkov/rest/KatalogDogodkovApplication.class
+si/fri/rso/katalog_dogodkov/configuration/RestProperties.class
 si/fri/rso/katalog_dogodkov/entity/Dogodek.class
 META-INF/services/javax.ws.rs.core.Application
 si/fri/rso/katalog_dogodkov/rest/KatalogDogodkovHealth.class
+si/fri/rso/katalog_dogodkov/logging/LogContextInterceptor.class
