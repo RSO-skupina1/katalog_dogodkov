@@ -9,11 +9,13 @@
         <!-- Resources (REST) -->
         <Logger name="si.fri.rso.katalog_dogodkov.rest.KatalogDogodkovREST" level="trace" additivity="false">
             <AppenderRef ref="console"/>
+            <AppenderRef ref="socket"/>
         </Logger>
 
         <!-- Default logger -->
         <Root level="info">
             <AppenderRef ref="console"/>
+            <AppenderRef ref="socket"/>
         </Root>
     </Loggers>
 </Configuration>

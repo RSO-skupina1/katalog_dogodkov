@@ -8,12 +8,7 @@ kumuluzee:
     start-retry-delay-ms: 500
     max-retry-delay-ms: 900000
     etcd:
-      hosts: http://localhost:2379
-
-  server:
-    base-url: http://localhost:8080
-    http:
-      port: 8080
+      hosts: http://etcd:2379
 
   discovery:
     etcd:
@@ -43,8 +38,6 @@ kumuluzee:
           password: ${POSTGRES_PASSWORD}
         disk-space-health-check:
           threshold: 100000000
-        http-health-check:
-          - connection-url: http://localhost:8080/v1/katalog_dogodkov
 
   metrics:
       web-instrumentation:
