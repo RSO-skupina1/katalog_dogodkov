@@ -1,5 +1,6 @@
 package si.fri.rso.katalog_dogodkov.bean;
 
+import com.kumuluz.ee.logs.cdi.Log;
 import si.fri.rso.katalog_dogodkov.entity.Dogodek;
 
 import javax.enterprise.context.RequestScoped;
@@ -9,6 +10,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 @RequestScoped
+@Log
 public class DogodekBean {
 
     @PersistenceContext

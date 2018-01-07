@@ -8,16 +8,11 @@ kumuluzee:
     start-retry-delay-ms: 500
     max-retry-delay-ms: 900000
     etcd:
-      hosts: http://localhost:2379
-
-  server:
-    base-url: http://localhost:8080
-    http:
-      port: 8080
+      hosts: http://etcd:2379
 
   discovery:
     etcd:
-      hosts: http://localhost:2379
+      hosts: http://etcd:2379
     ttl: 20
     ping-interval: 15
 
@@ -27,3 +22,32 @@ kumuluzee:
       username: ${POSTGRES_USERNAME}
       password: ${POSTGRES_PASSWORD}
       max-pool-size: 20
+
+  health:
+      servlet:
+        mapping: /health
+        enabled: true
+      logs:
+        enabled: true
+        level: INFO
+        period-s: 30
+      checks:
+        data-source-health-check:
+          jndi-name: jdbc/KatalogDogodkovDS
+          username: ${POSTGRES_USERNAME}
+          password: ${POSTGRES_PASSWORD}
+        disk-space-health-check:
+          threshold: 100000000
+
+  metrics:
+      web-instrumentation:
+        - name: metricsEndpoint
+          url-pattern: /metrics/*
+        - name: katalogDogodkovEndpoint
+          url-pattern: /v1/katalog_dogodkov/*
+
+  logs:
+      config-file-location: /Users/domenb/Desktop/Faks/RSO/vaje/RSO vaje/katalog_dogodkov/src/main/resources/log4j2.xml
+
+rest-properties:
+  healthy: true
