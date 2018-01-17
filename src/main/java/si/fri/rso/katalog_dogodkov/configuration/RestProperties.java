@@ -1,6 +1,7 @@
 package si.fri.rso.katalog_dogodkov.configuration;
 
 import com.kumuluz.ee.configuration.cdi.ConfigBundle;
+import com.kumuluz.ee.configuration.cdi.ConfigValue;
 
 import javax.enterprise.context.ApplicationScoped;
 
@@ -8,6 +9,7 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class RestProperties {
 
+    @ConfigValue(watch = true)
     private boolean healthy;
 
     public boolean isHealthy() {

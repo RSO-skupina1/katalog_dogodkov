@@ -46,8 +46,5 @@ kumuluzee:
         - name: katalogDogodkovEndpoint
           url-pattern: /v1/katalog_dogodkov/*
 
-  logs:
-      config-file-location: /Users/domenb/Desktop/Faks/RSO/vaje/RSO vaje/katalog_dogodkov/src/main/resources/log4j2.xml
-
 rest-properties:
   healthy: true
